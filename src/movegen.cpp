@@ -87,7 +87,7 @@ static void addKnightMoves(const Board &b, Square from, Color us,
     if (!onBoard(r, f))
       continue;
     Square to = makeSquare(r, f);
-    if (isEmpty(b.at(to)) || pieceColor(b.at(to)) != us)
+    if (!isFriendly(b.at(to), us))
       moves.emplace_back(from, to);
   }
 }
@@ -102,7 +102,7 @@ static void addKingMoves(const Board &b, Square from, Color us,
     if (!onBoard(r, f))
       continue;
     Square to = makeSquare(r, f);
-    if (!isEmpty(b.at(to)) || pieceColor(b.at(to)) != us)
+    if (isEmpty(b.at(to)) || pieceColor(b.at(to)) != us)
       moves.emplace_back(from, to);
   }
 
@@ -237,7 +237,12 @@ std::vector<Move> generateMoves(const Board &b) {
 
   for (Square sq = 0; sq < 64; ++sq) {
     Piece p = b.at(sq);
-    if (isEmpty(p) || pieceColor(p) != us)
+
+    if (isEmpty(p))
+      continue;
+    if (us == WHITE && !isWhitePiece(p))
+      continue;
+    if (us == BLACK && !isBlackPiece(p))
       continue;
 
     switch (p) {

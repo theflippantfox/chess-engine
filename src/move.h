@@ -25,8 +25,17 @@ enum Color {
 using Square = int;
 constexpr Square NO_SQ = -1;
 
-inline Color pieceColor(Piece p) { return (p > B_PAWN ? BLACK : WHITE); }
+inline bool isWhitePiece(Piece p) { return p >= W_PAWN && p <= W_KING; }
+inline bool isBlackPiece(Piece p) { return p >= B_PAWN && p <= B_KING; }
+inline Color pieceColor(Piece p) { return isBlackPiece(p) ? BLACK : WHITE; }
 inline bool isEmpty(Piece p) { return p == EMPTY; }
+
+inline bool isFriendly(Piece p, Color us) {
+  if (isEmpty(p))
+    return false;
+  return us == WHITE ? (p >= W_PAWN && p <= W_KING)
+                     : (p >= B_PAWN && p <= B_KING);
+}
 
 struct Move {
   Square from, to;
