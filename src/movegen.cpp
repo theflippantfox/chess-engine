@@ -19,7 +19,7 @@ static void addSlidingMoves(const Board &b, Square from, Color us,
                             const std::array<std::pair<int, int>, N> &dirs,
                             std::vector<Move> &moves) {
   for (auto [dr, df] : dirs) {
-    int r = rankOf(from) + dr, f = fileOf(from) + dr;
+    int r = rankOf(from) + dr, f = fileOf(from) + df;
     while (onBoard(r, f)) {
       Square to = makeSquare(r, f);
       Piece target = b.at(to);
@@ -44,7 +44,7 @@ static void addPawnMoves(const Board &b, Square from, Color us,
   int promoRank = (us == WHITE) ? 7 : 0;
   Piece promos[] = {
       (us == WHITE) ? W_QUEEN : B_QUEEN, (us == WHITE) ? W_ROOK : B_ROOK,
-      (us == WHITE) ? W_BISHOP : B_BISHOP, (us == WHITE) ? W_KNIGHT : W_KNIGHT};
+      (us == WHITE) ? W_BISHOP : B_BISHOP, (us == WHITE) ? W_KNIGHT : B_KNIGHT};
 
   int r = rankOf(from), f = fileOf(from);
 

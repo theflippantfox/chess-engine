@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chess Engine</title>
+  <link rel="stylesheet" href="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="container">
+    <div id="board"></div>
+    <div id="status">Connecting...</div>
+    <div id="controls">
+      <button id="newGameBtn" disabled>New Game</button>
+      <button id="flipBtn" disabled>Flip Board</button>
+    </div>
+    <div id="info">
+      <span id="depth"></span>
+      <span id="score"></span>
+      <span id="nodes"></span>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://unpkg.com/@chrisoakman/chessboardjs@1.0.0/dist/chessboard-1.0.0.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/chess.js/0.10.3/chess.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
