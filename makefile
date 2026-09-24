@@ -7,6 +7,8 @@ OUT = build/
 all:
 	mkdir -p build/
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(OUT)/chess
+	cp -r web/* build/
+	cd server && npm install
 
 run-web: all
 	cd server && npm start
